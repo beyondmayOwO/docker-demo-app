@@ -67,8 +67,8 @@ _NOTE: creating docker-network in optional. You can start both containers in a d
 
 ### 10. Stop mongodb and mongo-express containers in docker-compose.
     docker compose down
-
-
+- Takes down the containers as well as the network.
+  
 #### To build a docker image from the application
 
     docker build -t my-app:1.0 .       
