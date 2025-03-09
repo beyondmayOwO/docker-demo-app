@@ -1,4 +1,8 @@
 services:
+  my-app:
+    image: us.icr.io/imagehub/my-app:1.2
+    ports:
+      - 3000:3000
   mongodb:
     image: mongo:4.2.1
     ports:
