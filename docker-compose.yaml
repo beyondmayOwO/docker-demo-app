@@ -1,6 +1,6 @@
 services:
   my-app:
-    image: us.icr.io/imagehub/my-app:1.2
+    image: us.icr.io/imagehub/my-app:1.3
     ports:
       - 3000:3000
   mongodb:

@@ -1,20 +1,24 @@
-FROM node:13-alpine
+FROM node:13-alpine AS builder
 
-ENV NODE_ENV=production \
-    MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=password
-
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 
-RUN npm install --production --silent && mv node_modules ../
+RUN npm install --production --silent
 
-COPY ./app .
+COPY src ./src
+
+# -- Runtime stage --
+FROM node:13-alpine
+
+WORKDIR /usr/app
+
+COPY --from=builder /usr/app/node_modules ./node_modules
+COPY --from=builder /usr/app/src .
 
 EXPOSE 3000
 
-RUN chown -R node /usr/src/app
+RUN chown -R node /usr/app
 
 USER node
 
