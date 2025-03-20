@@ -45,32 +45,45 @@ _NOTE: creating docker-network in optional. You can start both containers in a d
 
 ### 1. Stop all the containers running in previous steps
 
-### 2. Add mongo and mongo-express containers to the services in docker-compose
+### 2. Change 'mongoUrlLocal' to 'mongoUrlDocker' in server.js
 
-### 3. Start mongodb and mongo-express
+### 3. Create Dockerfile and image for app
+
+### 4. Add app, mongo, mongo-express containers to the services in docker-compose
+
+### 5. Start docker-compose
     docker compose up
 
-### 4. Access the mongo-express
+### 6. Access the mongo-express
     http://localhost:8080
 
-### 5. Start node server 
-    node server.js
-
-### 6. Access the nodejs application from browser
+### 7. Access the nodejs application
     http://localhost:3000
 
-### 7. In mongo-express, create a new database "my-db", then a new collection "users" in "my-db"
+### 8. In mongo-express, create a new database "my-db", then a new collection "users" in "my-db"
 
-### 8. 'Edit Profile' and make changes.
+### 9. 'Edit Profile' and make changes.
 
-### 9. Reload mongo express. Data appears in mongo-express. Reload the html page also persists the data changes.
+### 10. Reload mongo express. Data appears in mongo-express. Reload the html page also persists the data changes.
 
-### 10. Stop mongodb and mongo-express containers in docker-compose.
+### 11. Stop mongodb and mongo-express containers in docker-compose.
     docker compose down
-- Takes down the containers as well as the network.
-  
-#### To build a docker image from the application
+- Takes down the containers as well as the network.     
 
-    docker build -t my-app:1.0 .       
-    
-The dot "." at the end of the command denotes location of the Dockerfile.
+## Push the app image to the cloud container registry (IBM Cloud)
+### 1. Install ibm cloud CLI and register for the container registry and the region
+- You can follow the instructions in docs on how to push the image in cloud registry page
+
+### 2. Log in to the IBM Cloud
+
+### 2. Log in the docker to the cloud
+    ibmcloud cr login
+
+### 3. Tag the image
+    docker tag my-app:1.0 us.icr.io/imagehub/my-app:1.0
+
+### 4. Push the image
+    docker push us.icr.io/imagehub/my-app:1.0
+
+### 5. Verify
+    ibmcloud cr image-list
