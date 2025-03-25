@@ -66,7 +66,7 @@ All components are docker-based
 <details>
  <summary>GUI Based</summary>
  <br>
- --- Set up ---
+ --- <a href="https://youtu.be/pMO26j2OUME?si=esENpKJteUtMDoHS">Set Up</a> ---
  <br>
    
  | | Command | Description |
@@ -75,7 +75,7 @@ All components are docker-based
  | 2 | `docker logs` | See the admin password generated |
  | 3 | `localhost:8080` | Create an admin account |
 
- --- Create Multibranch Pipeline ---
+ --- <a href="https://youtu.be/tuxO7ZXplRE?si=Xflhhb4-xfHwvMc5">Create Multibranch Pipeline</a> ---
  
  | | Command | Description |
  | --------------- | --------------- | --------------- |
