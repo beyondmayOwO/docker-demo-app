@@ -74,4 +74,18 @@ All components are docker-based
  | 1 | `docker run -p 8080:8080 -p 50000:50000 [master/slave communication] -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts` | Run the jenkins container |
  | 2 | `docker logs` | See the admin password generated |
  | 3 | `localhost:8080` | Create an admin account |
+
+ --- Create Multibranch Pipeline ---
+ 
+ | | Command | Description |
+ | --------------- | --------------- | --------------- |
+ | 1 | | Click 'new item'/'create new job' |
+ | 2 | | Add the name, choose 'multibranch pipeline' and save |
+ | 3 | | In 'Branch sources', choose 'git'. |
+ | 4 | | Clone the project repo using https and paste it in 'project repository' |
+ | 5 | | Behaviours > Discover branches > add > Filter by name (with regular expression) to choose which branches to track |
+ | 6 | `.*` <br> `^dev\|master\|feature.*$` | Track all branches <br> Track only the branches selected |
+ | 7 | | Create credentials for the pipeline created |
+ | 8 | | Add the credentials in the configuration |
+ | 9 | | save and it will scan right away for the branches|
 </details>
