@@ -61,3 +61,17 @@ All components are docker-based
  | 5 | `docker push us.icr.io/imagehub/my-app:1.0` | Push the image |
  | 6 | `ibmcloud cr image-list` | Verify |
 </details>
+
+## Jenkins (CI/CD)
+<details>
+ <summary>GUI Based</summary>
+ <br>
+ --- Set up ---
+ <br>
+   
+ | | Command | Description |
+ | --------------- | --------------- | --------------- |
+ | 1 | `docker run -p 8080:8080 -p 50000:50000 [master/slave communication] -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts` | Run the jenkins container |
+ | 2 | `docker logs` | See the admin password generated |
+ | 3 | `localhost:8080` | Create an admin account |
+</details>
