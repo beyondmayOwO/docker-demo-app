@@ -88,4 +88,13 @@ All components are docker-based
  | 7 | | Create credentials for the pipeline created |
  | 8 | | Add the credentials in the configuration |
  | 9 | | save and it will scan right away for the branches|
+
+ --- <a href="https://youtu.be/MY1w7sWW5ms?si=J7D8YJ12CX605HXG">Jenkinsfile - Jenkins Pipeline</a>
+
+ | | Command | Description |
+ | --------------- | --------------- | --------------- |
+ | 1 | | Create Jenkinsfile in branch and scan |
+ | 2 | `my-pipeline > branches > dev > stages` | Check out the stages and their status |
+ | 3 | `my-pipeline > dev > #1 > Replay` | Replay a pipeline (easy way instead of modifying Jenkinsfile, checkout and commit all over again) |
+ | 4 | `my-pipeline > dev > #1 > Restart from stage` | Restart from specific stage (build, test, deploy, etc) |
 </details>
