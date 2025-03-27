@@ -66,7 +66,7 @@ All components are docker-based
 <details>
  <summary>GUI Based</summary>
  <br>
- --- <a href="https://youtu.be/pMO26j2OUME?si=esENpKJteUtMDoHS">Set Up</a> ---
+ <a href="https://youtu.be/pMO26j2OUME?si=esENpKJteUtMDoHS">-- Set Up ---</a>
  <br>
    
  | | Command | Description |
@@ -75,7 +75,7 @@ All components are docker-based
  | 2 | `docker logs` | See the admin password generated |
  | 3 | `localhost:8080` | Create an admin account |
 
- --- <a href="https://youtu.be/tuxO7ZXplRE?si=Xflhhb4-xfHwvMc5">Create Multibranch Pipeline</a> ---
+ <a href="https://youtu.be/tuxO7ZXplRE?si=Xflhhb4-xfHwvMc5">--- Create Multibranch Pipeline ---</a>
  
  | | Command | Description |
  | --------------- | --------------- | --------------- |
@@ -89,7 +89,7 @@ All components are docker-based
  | 8 | | Add the credentials in the configuration |
  | 9 | | save and it will scan right away for the branches|
 
- --- <a href="https://youtu.be/MY1w7sWW5ms?si=J7D8YJ12CX605HXG">Jenkinsfile - Jenkins Pipeline</a>
+ <a href="https://youtu.be/MY1w7sWW5ms?si=J7D8YJ12CX605HXG">--- Jenkinsfile - Jenkins Pipeline ---</a>
 
  | | Command | Description |
  | --------------- | --------------- | --------------- |
@@ -97,4 +97,11 @@ All components are docker-based
  | 2 | `my-pipeline > branches > dev > stages` | Check out the stages and their status |
  | 3 | `my-pipeline > dev > #1 > Replay` | Replay a pipeline (easy way instead of modifying Jenkinsfile, checkout and commit all over again) |
  | 4 | `my-pipeline > dev > #1 > Restart from stage` | Restart from specific stage (build, test, deploy, etc) |
+
+ --- Trigger Jenkins with Github (<a href="https://youtu.be/CmwTPxdx24Y?si=vjGLuEdH4Izi-eEY">Nana</a> | <a href="https://youtu.be/Z3S2gMBUkBo?si=giDXFEP3EOs2t6_h">Simply Explained</a>)---
+
+ | | Command | Description |
+ | --------------- | --------------- | --------------- |
+ | 1 |1. Install Github plugin in Jenkins <br> `Jenkins > Manage Jenkins > Plugins > Avaialble Plugins > Search 'Github Integration' > Install > Reload` <br><br> 2. In Github <br> `Go to Repo > Settings > Webhooks > Add Webhook > "jenkins-server-url/github-webhook" for payload url` <br><br> 3. See Jenkins webhook url <br> `Jenkins > Manage Jenkins > System > Github > Advanced > Tick override hook url` | Pushing notifications |
+ | 2 | `my-pipeline > Configure > Build Configuration > Scan Multibranch Pipeline Triggers > Tick "Periodically if not otherwise run" > Set interval > Save` | Pulling |
 </details>
