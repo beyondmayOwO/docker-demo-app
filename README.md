@@ -102,6 +102,16 @@ All components are docker-based
 
  | | Command | Description |
  | --------------- | --------------- | --------------- |
- | 1 |1. Install Github plugin in Jenkins <br> `Jenkins > Manage Jenkins > Plugins > Avaialble Plugins > Search 'Github Integration' > Install > Reload` <br><br> 2. In Github <br> `Go to Repo > Settings > Webhooks > Add Webhook > "jenkins-server-url/github-webhook" for payload url` <br><br> 3. See Jenkins webhook url <br> `Jenkins > Manage Jenkins > System > Github > Advanced > Tick override hook url` | Pushing notifications |
+ | 1 | 1. Install Github plugin in Jenkins <br> `Jenkins > Manage Jenkins > Plugins > Avaialble Plugins > Search 'Github Integration' > Install > Reload` <br><br> 2. In Github <br> `Go to Repo > Settings > Webhooks > Add Webhook > "jenkins-server-url/github-webhook" for payload url` <br><br> 3. See Jenkins webhook url <br> `Jenkins > Manage Jenkins > System > Github > Advanced > Tick override hook url` | Pushing notifications |
  | 2 | `my-pipeline > Configure > Build Configuration > Scan Multibranch Pipeline Triggers > Tick "Periodically if not otherwise run" > Set interval > Save` | Pulling |
+
+ --- <a href="https://youtu.be/L9Ite-1pEU8?si=u2BpsAIxixzcyzeK">Configure Build Tools</a> ---
+
+ | | Command | Description |
+ | --------------- | --------------- | --------------- |
+ | 1 | Configure gradle <br> `Manage Jenkins > Tools > Gradle installations > Add gradle > Add "name-version" for name > Choose version > Save` | For build tools already available |
+ | 2 | 1. Install 'nodejs' plugin <br><br> 2. Configure Nodejs <br> `Manage Jenkins > Tools > Nodejs installations > Add nodejs > Add "name-version" for name > Choose version > "yarn@version" in  Global npm packages to install > Save` | For build tools not already available (Install plugins then configure) |
+ | 3 | <a href="https://github.com/beyondmayOwO/docker-demo-app/blob/main/Jenkinsfile">Jenkinsfile</a> | Create Jenkinsfile in 'main' branch |
+ | 4 | | Create new pipeline in Jenkins. Add 'main' to branch |
+ | 5 | | Scan |
 </details>
