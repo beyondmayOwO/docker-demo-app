@@ -1,63 +1,36 @@
-# demo app - developing with Docker
+# [K8s in 1 hour](https://youtu.be/s_o8dwzRlu4?si=3crrMoD8GpdwRSFh)
 
-This demo app shows a simple user profile app set up using 
-- index.html with pure js and css styles
-- nodejs backend with express module
-- mongodb for data storage
+## K8s manifest files
+- mongo-config.yaml
+- mongo-secret.yaml
+- mongo.yaml
+- webapp.yaml
 
-All components are docker-based
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0b67e8c9-08b9-4bb9-ace0-d72c528025de" alt="Image 1" width="45%" />
+  <img src="https://github.com/user-attachments/assets/db6f6ca5-bba8-4875-b696-c1fb3b446191" alt="Image 2" width="45%" />
+</p>
 
 ---
 
-## Docker
 <details>
-     <summary>With Docker</summary>
- <br>
-   
-  |  | Command | Description |
-  | --------------- | --------------- | --------------- |
-  | 1 | `- docker pull mongo:4.2.1` <br> `- docker pull mongo-express:0.49` | Pull the mongo and mongo-express images from Dockerhub |
-  | 2 | `docker network create mongo-network` | Create docker network |
-  | 3 | `docker network ls` | Check the network list |
-  | 4 | `docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin` <br> `-e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb` <br> `--net mongo-network mongo:4.2.1` | Start mongodb (optional, omit `--net` to use the default) |
-  | 5 | `docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin` <br> `-e ME_CONFIG_MONGODB_ADMINPASSWORD=password ` <br> `--net mongo-network` <br> `--name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express:0.49` | Start mongo-express |
-  | 6 | `http://localhost:8081` | Open mongo-express from browser |
-  | 7 | `- npm install` <br> `- node server.js` | Start your nodejs application locally - go to `app` directory of project |
-  | 8 | `http://localhost:3000` | Access you nodejs application UI from browser |
-  | 9 | |create `user-account` _db_ and `users` _collection_ in mongo-express |
-  | 10 | | 'Edit Profile' and make changes |
-  | 11 | | Reload mongo express. Data appears in mongo-express. Reload the html page also persists the data changes. |
-</details>
-
-<details>
- <summary>With Docker Compose</summary>
+ <summary>K8s Commands</summary>
  <br>
 
  | | Command | Description |
  | --------------- | --------------- | --------------- |
- | 1 | | Stop all the containers running in previous steps |
- | 2 | | Change 'mongoUrlLocal' to 'mongoUrlDocker' in server.js |
- | 3 | | Create Dockerfile and image for app |
- | 4 | | Add app, mongo, mongo-express containers to the services in docker-compose |
- | 5 | `docker compose up` | Start docker-compose |
- | 6 | `http://localhost:8080` | Access the mongo-express |
- | 7 | `http://localhost:3000` | Access the nodejs application |
- | 8 | | In mongo-express, create a new database "my-db", then a new collection "users" in "my-db" |
- | 9 | | 'Edit Profile' and make changes |
- | 10 | | Reload mongo express. Data appears in mongo-express. Reload the html page also persists the data changes |
- | 11 | `docker compose down` | Stop mongodb and mongo-express containers in docker-compose (_Takes down the containers as well as the network_) |
-</details>
-
-<details>
- <summary>Push An Image to The Cloud Container Registry (IBM Cloud)</summary>
- <br>
-
- | | Command | Description |
- | --------------- | --------------- | --------------- |
- | 1 | | Install ibm cloud CLI and register for the container registry and the region (_Follow the docs to push the image on the cloud registry page._) |
- | 2 | | Log in to the IBM Cloud |
- | 3 | `ibmcloud cr login` | Log in the docker to the cloud |
- | 4 | `docker tag my-app:1.0 us.icr.io/imagehub/my-app:1.0` | Tag the image |
- | 5 | `docker push us.icr.io/imagehub/my-app:1.0` | Push the image |
- | 6 | `ibmcloud cr image-list` | Verify |
+ | 1 | - Install minikube for linux. [Guide](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download) <br><br> - `minikube start --vm-driver=hyperkit` <br><br> - `minikube status` <br><br> _`kubectl` is installed as dependency. No need to install separately. `kubectl`: Configuring minikube cluster. `minikube cli`: start up/deleting the cluster_ | Setup minikube and kubectl |
+ | 2 | <img src="https://github.com/user-attachments/assets/bc1903b0-5429-4bb8-8faa-c589a5f0b552" width="350"/> | mongo-config.yaml |
+ | 3 | <img src="https://github.com/user-attachments/assets/faf5cdd8-2a3d-48a2-af39-b7230665f616" width="250"/> <br> **Base64 encoding for secret** <br><br> - `echo -n mongouser \| base64` <br> - `echo -n mongopassword \| base64` | mongo-secret.yaml |
+ | 4 | <img src="https://github.com/user-attachments/assets/dac24d12-d644-4344-b108-acfcbc5f45f9" width="350"/> <br><br> **Label** <br> <img src="https://github.com/user-attachments/assets/0ed5ed21-e233-4b04-a338-5b9ea41d4d0a" width="350"/> <br><br> **matchLabels** <br> <img src="https://github.com/user-attachments/assets/41aa3d1c-6620-4fcb-b58d-3eef929b0955" width="350"/> | mongo-deployment in mongo.yaml |
+ | 5 | <img src="https://github.com/user-attachments/assets/80219922-be48-4b53-bbdb-06cf818e1d14" width="350"/> <br><br> _Common practice to set the same port for `port` and `targetPort` to make it easier. `27017` for both._ | mongo-service in mongo.yaml |
+ | 6 | The same as `mongo.yaml` except `label`, `port`, `targetPort`. `3000` for ports. | webapp.yaml for deployment and service |
+ | 7 | **Assign the secret data to mongo generated root username and password as environment varariables** <br> <img src="https://github.com/user-attachments/assets/42876111-5328-4859-83e1-e63defc525cc" width="250"/> | Pass the secret data to mongo.yaml |
+ | 8 | <img src="https://github.com/user-attachments/assets/3fc8d87f-5170-41fc-bacc-80a7c8f0480d" width="250"/> | Pass the secret data and configmap data to webapp.yaml |
+ | 9 | <img src="https://github.com/user-attachments/assets/91757c5b-ae02-4470-9dd9-7caf15544dd4" width="350"/> | Configure external service in webapp-service to make it accessible from the outside |
+ | 10 | **Start minikube** <br> - `minikube status` <br> - `minikube start` <br><br> **Deploy from the configuration files** <br> - `kubectl apply -f mongo-config.yaml` <br> - `kubectl apply -f mongo-secret.yaml` <br> - `kubectl apply -f mongo.yaml` <br> - `kubectl apply -f webapp.yaml` | Deploy the services |
+ | 11 | - `kubectl get all` <br> - `kubectl get configmap` <br> - `kubectl get secret` <br> - `kubectl get node` <br> - `kubectl get pod` <br> - `kubectl get svc` | Get basic infos about K8s components |
+ | 12 | - `kubectl describe svc {svc-name}` <br> - `kubectl describe pod {pod-name}` | Get detailed infos about components |
+ | 13 | **Get the logs** <br> - `kubectl logs {pod-name}` <br><br> **Screen the logs** <br> - `kubectl logs {pod-name} -f` | Get application logs |
+ | 14 | `minikube stop` | Stop the minikube cluster |
 </details>
