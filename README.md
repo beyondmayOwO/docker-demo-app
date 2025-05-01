@@ -33,4 +33,16 @@
  | 12 | - `kubectl describe svc {svc-name}` <br> - `kubectl describe pod {pod-name}` | Get detailed infos about components |
  | 13 | **Get the logs** <br> - `kubectl logs {pod-name}` <br><br> **Screen the logs** <br> - `kubectl logs {pod-name} -f` | Get application logs |
  | 14 | `minikube stop` | Stop the minikube cluster |
+
+ ---
+ 
+ --- Summary of the Commands ---
+ <br>
+
+  | | Command | Description |
+  | --------------- | --------------- | --------------- |
+  | 1 | **Create Deployment** <br> `kubectl create deployment [name]` <br><br> **Edit Deployment** <br> `kubectl edit deployment [name]` <br><br> **Delete Deployment** <br> `kubectl delete deployment [name]` | CURD Commands |
+  | 2 | `kubectl get nodes \| pod \| services \| replicaset \| deployment` | Status of different K8s components |
+  | 3 | **Log to Console** <br> `kubectl logs [pod-name]` <br><br> **Get Interactive Terminal** <br> `kubectl exec -it [pod name] -- bin/bash` <br><br> **Get info about pod** <br> `kubectl describe pod [pod name]` | Debugging pods |
+  | 4 | **Apply a configuration file** <br> `kubectl apply -f [file name]` <br><br> **Delete with Configuration File** <br> `kubectl delete -f [file name]` | Use configuration file for CRUD |
 </details>
