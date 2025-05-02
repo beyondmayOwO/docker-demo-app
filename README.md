@@ -45,4 +45,16 @@
   | 2 | `kubectl get nodes \| pod \| services \| replicaset \| deployment` | Status of different K8s components |
   | 3 | **Log to Console** <br> `kubectl logs [pod-name]` <br><br> **Get Interactive Terminal** <br> `kubectl exec -it [pod name] -- bin/bash` <br><br> **Get info about pod** <br> `kubectl describe pod [pod name]` | Debugging pods |
   | 4 | **Apply a configuration file** <br> `kubectl apply -f [file name]` <br><br> **Delete with Configuration File** <br> `kubectl delete -f [file name]` | Use configuration file for CRUD |
+
+ ---
+ 
+ --- Other Concepts ---
+ <br>
+
+  | | Command | Description |
+  | --------------- | --------------- | --------------- |
+  | 1 | **List the namespaces** <br> `kubectl get namespace` <br><br> **Create a namespace in command line** <br> `kubectl create namespace [namespace name]` <br><br> **Set the default namespace for the following contexts** <br> `kubectl config set-context --current --namespace=[namespace name]` | Namespaces |
+  | 2 | `kubectl get nodes \| pod \| services \| replicaset \| deployment` | Status of different K8s components |
+  | 3 | **Log to Console** <br> `kubectl logs [pod-name]` <br><br> **Get Interactive Terminal** <br> `kubectl exec -it [pod name] -- bin/bash` <br><br> **Get info about pod** <br> `kubectl describe pod [pod name]` | Debugging pods |
+  | 4 | **Apply a configuration file** <br> `kubectl apply -f [file name]` <br><br> **Delete with Configuration File** <br> `kubectl delete -f [file name]` | Use configuration file for CRUD |
 </details>
