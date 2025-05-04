@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: nanajanashia/k8s-demo-app:v1.0
+        image: k8s-demo:1.7
         ports:
         - containerPort: 3000
         env:
